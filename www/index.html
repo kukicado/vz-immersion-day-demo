@@ -1,0 +1,255 @@
+<html>
+  <head>
+    <title>Who is this? (Olympics Edition)</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+  </head>
+
+  <style>
+    .hide {
+      visibility: hidden;
+    }
+    #loading {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: #dddddddd;
+    }
+
+    #analyze {
+      opacity: 0;
+      position: absolute;
+      z-index: -1;
+    }
+    .lds-dual-ring {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-dual-ring:after {
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 15% 48%;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      border-color: #fff transparent #fff transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+    @keyframes lds-dual-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <body class="bg-gradient-to-b from-blue-100 via-blue-200 to-blue-900">
+    <div class="container mx-auto my-10 relative">
+      <h1 class="text-4xl mb-10 text-center font-bold">Who is this?</h1>
+      <img src="./img/tokyo-logo.png" class="h-32 mx-auto mb-10" />
+      <h2
+        class="
+          text-2xl text-center
+          font-semibold
+          mb-16
+          -mt-20
+          ml-32
+          transform
+          -rotate-12
+        "
+      >
+        Edition
+      </h2>
+
+      <div class="text-center mb-10">
+        <label
+          for="analyze"
+          class="
+            py-3
+            px-5
+            bg-blue-900
+            hover:bg-blue-700
+            text-white
+            rounded-lg
+            cursor-pointer
+            shadow-xl
+          "
+          >Select Athlete</label
+        >
+        <input type="file" id="analyze" />
+      </div>
+
+      <div class="relative">
+        <div id="loading" class="hide lds-dual-ring rounded-xl"></div>
+        <canvas
+          width="500"
+          height="500"
+          id="canvas"
+          class="mx-auto rounded-xl"
+        ></canvas>
+      </div>
+
+      <div class="text-center">
+        <pre id="response"></pre>
+        <h2 id="athleteName" class="text-2xl font-bold mt-5 mb-5"></h2>
+        <ul
+          id="medals"
+          class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-stretch"
+        ></ul>
+      </div>
+
+      <audio>
+        <source src="/audio/fanfare.wav" type="audio/wav" />
+      </audio>
+
+      <footer class="text-center">
+        Powered by <a href="">Verizon 5G</a> and
+        <a href="https://mongodb.com">MongoDB</a>.
+      </footer>
+    </div>
+  </body>
+
+  <script src="/js/face-api.js"></script>
+  <script type="text/javascript">
+    let labeledFaceDescriptors;
+
+    let file = document.querySelector("#analyze");
+    let codeBlock = document.querySelector("#response");
+
+    let athleteName = document.querySelector("#athleteName");
+    let medals = document.querySelector("#medals");
+
+    const loadImage = () => {
+      let canvas = document.querySelector("canvas");
+      let ctx = canvas.getContext("2d");
+
+      let reader = new FileReader();
+
+      reader.onload = function (event) {
+        // Show loading overlay
+        document.querySelector("#loading").classList.remove("hide");
+
+        // Create an image that will be drawn on the canvas
+        let img = new Image();
+        img.onload = async function () {
+          // Resize the image
+          let imageRatio = img.width / img.height;
+          canvas.height = 500;
+          canvas.width = 500 * imageRatio;
+
+          // Draw on canvas
+          ctx.drawImage(
+            img,
+            0,
+            0,
+            img.width,
+            img.height,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+
+          // Convert into base64 and POST to server
+          let imgData = canvas.toDataURL();
+          const response = await fetch("/detection", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ imgData }),
+          }).then((resp) => {
+            return resp.json();
+          });
+
+          let data = response[0];
+
+          //if (data.name !== "unknown") runFireworks();
+
+          // Output the response to the PRE block
+          //codeBlock.innerText = JSON.stringify(response, null, 2);
+
+          // Olympic Stuff
+          athleteName.innerText = data.name;
+
+          medals.innerHTML = "";
+          data.medals.forEach((medal) => {
+            let li = document.createElement("li");
+            let medalType = "";
+            if (medal.type === "gold") {
+              medalType = `<img class="mb-10 w-32 mx-auto self-stretch" src="./img/gold-medal.png">`;
+            }
+            if (medal.type === "silver") {
+              medalType = `<img class="mb-10 w-32 mx-auto" src="./img/silver-medal.png">`;
+            }
+            if (medal.type === "bronze") {
+              medalType = `<img class="mb-10 w-32 mx-auto" src="./img/bronze-medal.png">`;
+            }
+
+            li.innerHTML = `<div class="w-full bg-white rounded-lg p-8 mb-10 shadow-xl">
+              ${medalType}
+
+              <p class="font-bold">${medal.event}</p>
+            </div>`;
+            medals.appendChild(li);
+            console.log(medal);
+          });
+
+          document.querySelector("#loading").classList.add("hide");
+          document.querySelector("audio").play();
+        };
+        img.src = event.target.result;
+        //img.src = data.imgSrc;
+      };
+
+      // Trigger the reader onload event when an image is selected.
+      if (file) {
+        reader.readAsDataURL(file.files[0]);
+      }
+    };
+
+    // When a file is selected, loadImage()
+    file.addEventListener("change", loadImage);
+
+    function runFireworks() {
+      var end = Date.now() + 5 * 1000;
+
+      // go Buckeyes!
+      var colors = ["#397ec9", "#f8a91c", "#201c1c", "#2dab45", "#ed1e48"];
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 100,
+          origin: { x: 0 },
+          colors: colors,
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 100,
+          origin: { x: 1 },
+          colors: colors,
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+  </script>
+
+  <script type="text/javascript"></script>
+</html>

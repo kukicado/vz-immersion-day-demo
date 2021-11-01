@@ -1,0 +1,140 @@
+[
+  {
+    "imgSrc": "https://i.imgur.com/OMmZBeD.jpg",
+    "name": "Sunisa Lee",
+    "medals": [
+      {
+        "type": "gold",
+        "event": "Women's artistic individual all-around · Artistic gymnastics"
+      },
+      {
+        "type": "silver",
+        "event": "Women's artistic team all-around · Artistic gymnastics"
+      },
+      {
+        "type": "bronze",
+        "event": "Women's uneven bars · Artistic gymnastics"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/4foHMyP.jpg",
+    "name": "Katie Ledecky",
+    "medals": [
+      {
+        "type": "silver",
+        "event": "Women's 400m Freestyle"
+      },
+      {
+        "type": "gold",
+        "event": "Women's 800m Freestyle"
+      },
+      {
+        "type": "gold",
+        "event": "Women's 1500m Freestyle"
+      },
+      {
+        "type": "silver",
+        "event": "Women's 4 x 200m Freestyle Relay"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/CZ2IMRQ.jpg",
+    "name": "Caeleb Dressel",
+    "medals": [
+      {
+        "type": "gold",
+        "event": "Men's 50m Freestyle"
+      },
+      {
+        "type": "gold",
+        "event": "Men's 100m Freestyle"
+      },
+      {
+        "type": "gold",
+        "event": "Men's 100m Butterfly"
+      },
+      {
+        "type": "gold",
+        "event": "Men's 4 x 100m Freestyle Relay"
+      },
+      {
+        "type": "gold",
+        "event": "Men's 4 x 100m Medley Relay"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/4CheTIj.jpg",
+    "name": "Allyson Felix",
+    "medals": [
+      {
+        "type": "gold",
+        "event": "Women's 4x400m relay · Athletics"
+      },
+      {
+        "type": "bronze",
+        "event": "Women's 400m · Athletics"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/IBY7JYp.jpg",
+    "name": "Sydney McLaughlin",
+    "medals": [
+      {
+        "type": "gold",
+        "event": "Women's 400-meter hurdles"
+      },
+      {
+        "type": "gold",
+        "event": "Women's 4x400-meter relay"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/ZRvgw0i.jpg",
+    "name": "Noah Lyles",
+    "medals": [
+      {
+        "type": "bronze",
+        "event": "Men's 200-meter · Athletics"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/cVXnqOt.jpg",
+    "name": "Simone Biles",
+    "medals": [
+      {
+        "type": "silver",
+        "event": "Women's artistic team all-around·Artistic gymnastics"
+      },
+      {
+        "type": "bronze",
+        "event": "Women's balance beam·Artistic gymnastics"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/uAck3SJ.jpg",
+    "name": "April Ross",
+    "medals": [
+      {
+        "type": "gold",
+        "event": "Women's tournament·Beach volleyball"
+      }
+    ]
+  },
+  {
+    "imgSrc": "https://i.imgur.com/WyhetFo.jpg",
+    "name": "Robert Belson",
+    "medals": [
+      {
+        "type": "gold",
+        "event": "5G Speeds"
+      }
+    ]
+  }
+]
