@@ -175,7 +175,7 @@
 
           let data = response[0];
 
-          //if (data.name !== "unknown") runFireworks();
+          if (data.name !== "unknown") runFireworks();
 
           // Output the response to the PRE block
           //codeBlock.innerText = JSON.stringify(response, null, 2);
@@ -207,7 +207,12 @@
           });
 
           document.querySelector("#loading").classList.add("hide");
-          document.querySelector("audio").play();
+
+          //Fanfare
+          if (data.name !== "unknown") {
+            document.querySelector("audio").play();
+            runFireworks();
+          }
         };
         img.src = event.target.result;
         //img.src = data.imgSrc;
