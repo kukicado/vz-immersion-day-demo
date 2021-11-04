@@ -133,7 +133,11 @@
     "medals": [
       {
         "type": "gold",
-        "event": "5G Speeds"
+        "event": "5G Edge Innovation"
+      },
+      {
+        "type": "gold",
+        "event": "Infrastructure Wizardry"
       }
     ]
   }
