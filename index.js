@@ -13,7 +13,7 @@ dotenv.config();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const wwwPath = `${__dirname}/www`;
 const MODELS_PATH = `${__dirname}/models`;
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 // Connect to MongoDB
 const mongoClient = await MongoClient.connect(`${process.env.MONGODB_URI}`, {
