@@ -1,6 +1,10 @@
-# vz-immersion-day-demo
+# Verizon <> MongoDB Immersion Day Demo
 
-The VZ Immersion Day Demo showcases an application built for
+The VZ Immersion Day Demo showcases an application built in collaboration with
+Verizon and MongoDB. It is an app that allows you to detect olympic athletes
+that competed in the 2020 Tokyo olympics by just uploading their picture. The
+app was built to showcase AWS Wavelength, Verizon 5G, and MongoDB capabilities
+at the edge.
 
 To get started run `npm install`. While the dependencies are installed, rename
 the `.env.example` file to `.env` and replace the stubbed out variables with
