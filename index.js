@@ -6,7 +6,7 @@ import { MongoClient } from "mongodb";
 import faceapi from "face-api.js";
 import nodeCanvas from "canvas";
 import dotenv from "dotenv";
-import * as tf from "@tensorflow/tfjs-node-gpu"
+//import * as tf from "@tensorflow/tfjs-node-gpu"
 
 dotenv.config();
 
