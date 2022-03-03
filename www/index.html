@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Who is this? (Olympics Edition)</title>
+    <title>Who is this? (Beijing 2022 Olympics Edition)</title>
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
@@ -54,20 +54,19 @@
     }
   </style>
 
-  <body class="bg-gradient-to-b from-blue-100 via-blue-200 to-blue-900">
+  <body
+    class="bg-gradient-to-b from-blue-100 via-blue-200 to-blue-900"
+    style="
+      background: url('/img/bg.webp');
+      background-repeat: no-repeat;
+      background-size: cover;
+    "
+  >
     <div class="container mx-auto my-10 relative">
       <h1 class="text-4xl mb-10 text-center font-bold">Who is this?</h1>
-      <img src="./img/tokyo-logo.png" class="h-32 mx-auto mb-10" />
+      <img src="./img/b2022-logo.svg" class="h-32 mx-auto mb-10" />
       <h2
-        class="
-          text-2xl text-center
-          font-semibold
-          mb-16
-          -mt-20
-          ml-32
-          transform
-          -rotate-12
-        "
+        class="text-2xl text-center font-semibold mb-16 -mt-20 ml-32 transform -rotate-12"
       >
         Edition
       </h2>
@@ -75,16 +74,7 @@
       <div class="text-center mb-10">
         <label
           for="analyze"
-          class="
-            py-3
-            px-5
-            bg-blue-900
-            hover:bg-blue-700
-            text-white
-            rounded-lg
-            cursor-pointer
-            shadow-xl
-          "
+          class="py-3 px-5 bg-blue-900 hover:bg-blue-700 text-white rounded-lg cursor-pointer shadow-xl"
           >Select Athlete</label
         >
         <input type="file" id="analyze" />
@@ -229,9 +219,7 @@
 
     function runFireworks() {
       var end = Date.now() + 5 * 1000;
-
-      // go Buckeyes!
-      var colors = ["#397ec9", "#f8a91c", "#201c1c", "#2dab45", "#ed1e48"];
+      var colors = ["#c11827", "#f1ad06", "#99c981", "#1f4b95", "#a5d9f6"];
 
       (function frame() {
         confetti({
